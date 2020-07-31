@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using InventoryManager.DnD5eAPI.Results;
 using InventoryManager.Domain.Services;
+using Microsoft.VisualBasic;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 namespace InventoryManager.DnD5eAPI.Services
 {
     public class ItemListService : IItemListService
     {
-        public Task<Dictionary<string, string>> ItemList(string itemUriPrefix)
+        public async Task<EquipmentListResult> ItemList(string itemUriPrefix)
         {
-            string uri = "equipment";
+            using (DnD5eAPIClient client = new DnD5eAPIClient())
+            {
+                string uri = itemUriPrefix;
 
-            Dictionary<string,string>
+                var responseObject = await client.GetAsync<EquipmentListResult>(uri);
+                
+                
+
+                return responseObject;
+            }
         }
     }
 }
