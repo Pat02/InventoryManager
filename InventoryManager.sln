@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManager.EntityFram
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManager.DnD5eAPI", "InventoryManager.DnD5eAPI\InventoryManager.DnD5eAPI.csproj", "{20D86A47-E23F-4D5B-A518-0903BF52B107}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "TestConsoleApp\TestConsoleApp.csproj", "{C3ECB009-AD28-49D2-969F-35A6D67D0B42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsoleApp", "TestConsoleApp\TestConsoleApp.csproj", "{C3ECB009-AD28-49D2-969F-35A6D67D0B42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager.WPF.UI", "InventoryManager.WPF.UI\InventoryManager.WPF.UI.csproj", "{3F0BC6F1-8655-4126-B6EB-E1ACEB4139E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C3ECB009-AD28-49D2-969F-35A6D67D0B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3ECB009-AD28-49D2-969F-35A6D67D0B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3ECB009-AD28-49D2-969F-35A6D67D0B42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F0BC6F1-8655-4126-B6EB-E1ACEB4139E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F0BC6F1-8655-4126-B6EB-E1ACEB4139E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F0BC6F1-8655-4126-B6EB-E1ACEB4139E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F0BC6F1-8655-4126-B6EB-E1ACEB4139E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

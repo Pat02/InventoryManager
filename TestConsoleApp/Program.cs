@@ -18,12 +18,12 @@ namespace TestConsoleApp
         {
             ItemListService itemList = new ItemListService();
             ItemService itemService = new ItemService();
-            //var result = await itemList.ItemList("/api/equipment");
+            var result = await itemList.ItemList("/api/equipment");
             var result2 = await itemService.GetItem(@"/api/equipment/backpack");
-            //foreach( EquipmentListLineItem thing in result.results)
-            //{
-            //    Console.WriteLine($"{thing.name} : {thing.index}");
-            //}
+            foreach (EquipmentListLineItem thing in result.results)
+            {
+                Console.WriteLine($"{thing.name} : {thing.index}");
+            }
         }
     }
 }

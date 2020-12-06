@@ -1,0 +1,46 @@
+﻿<Window x:Class="InventoryManager.WPF.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InventoryManager.WPF.UI"
+        mc:Ignorable="d"
+        Title="Inventort Manager" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Margin="5"
+                    Grid.Row="0"
+                    Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Total Capacity:"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Padding="5"/>
+                <TextBlock Text="{Binding MaximumWeight}"
+                           MinWidth="50"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Padding="5"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Total Weight:"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Padding="5"/>
+                    <TextBlock Text="{Binding CurrentWeight}"
+                           MinWidth="50"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Padding="5"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

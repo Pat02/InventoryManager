@@ -12,4 +12,8 @@
     <ProjectReference Include="..\InventoryManager.Domain\InventoryManager.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Converters\" />
+  </ItemGroup>
+
 </Project>
