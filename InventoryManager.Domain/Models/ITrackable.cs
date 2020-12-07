@@ -4,9 +4,8 @@ using System.Text;
 
 namespace InventoryManager.Domain.Models
 {
-    public interface IItem : ITrackable
+    public interface ITrackable
     {
-        string Name { get; set; }
-        double Weight { get; set; }
+        Guid id { get; set; }
     }
 }

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace InventoryManager.Domain.Models
 {
-    public class Inventory
+    public class Inventory : Trackable
     {
-        public int id { get; set; }
+        public string name { get; set; }
         public List<InventoryItem> InventoryItems { get; set; }
     }
 }

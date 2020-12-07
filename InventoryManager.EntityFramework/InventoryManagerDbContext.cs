@@ -18,8 +18,8 @@ namespace InventoryManager.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Container>().HasKey("_id");
-            modelBuilder.Entity<Item>().HasKey("_id");
+            modelBuilder.Entity<Container>().HasKey("id");
+            modelBuilder.Entity<Item>().HasKey("id");
             modelBuilder.Entity<Inventory>().HasKey("id");
             modelBuilder.Entity<InventoryItem>().HasKey("id");
             base.OnModelCreating(modelBuilder);

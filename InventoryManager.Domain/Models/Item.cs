@@ -4,10 +4,10 @@ using System.Text;
 
 namespace InventoryManager.Domain.Models
 {
-    public class Item : IItem
+    public class Item : Trackable, IItem
     {
-        public Guid _id { get; set; }
         public string Name { get; set; }
         public double Weight { get; set; }
+        
     }
 }
