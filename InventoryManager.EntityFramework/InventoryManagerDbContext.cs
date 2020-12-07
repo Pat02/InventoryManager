@@ -6,7 +6,7 @@ using InventoryManager.Domain.Models;
 
 namespace InventoryManager.EntityFramework
 {
-    class InventoryManagerDbContext : DbContext
+    public class InventoryManagerDbContext : DbContext
     {
 
         public InventoryManagerDbContext(DbContextOptions options) : base(options) { }

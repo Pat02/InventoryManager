@@ -6,12 +6,19 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace InventoryManager.EntityFramework
 {
-    class InventoryManagerDbContextFactory : IDesignTimeDbContextFactory<InventoryManagerDbContext>
+    public class InventoryManagerDbContextFactory : IDesignTimeDbContextFactory<InventoryManagerDbContext>
     {
+        private readonly Action<DbContextOptionsBuilder> configureDbContext;
+
+        public InventoryManagerDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext)
+        {
+            this.configureDbContext = configureDbContext;
+        }
+
         public InventoryManagerDbContext CreateDbContext(string[] args = null)
         {
             var options = new DbContextOptionsBuilder<InventoryManagerDbContext>();
-            options.UseSqlite(@"Data Source=InventoryManager.db;");
+            configureDbContext(options);
             return new InventoryManagerDbContext(options.Options);
         }
     }
