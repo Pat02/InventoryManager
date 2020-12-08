@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InventoryManager.DnD5eAPI\InventoryManager.DnD5eAPI.csproj" />
+    <ProjectReference Include="..\InventoryManager.Domain\InventoryManager.Domain.csproj" />
+    <ProjectReference Include="..\InventoryManager.EntityFramework\InventoryManager.EntityFramework.csproj" />
   </ItemGroup>
 
 </Project>
