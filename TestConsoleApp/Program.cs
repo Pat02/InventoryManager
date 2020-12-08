@@ -32,13 +32,13 @@ namespace TestConsoleApp
 
             InventoryManagerDbContextFactory contextFactory = new InventoryManagerDbContextFactory(configureDbContext);
             IDataService<Item> dataService = new GenericDataService<Item>(contextFactory);
-            Guid testGuid = new Guid();
+            Guid testGuid = Guid.NewGuid();
             Item item = new Item() {id = testGuid, Name = "Test Item of Valor", Weight = 1 };
 
-            var i = await dataService.Create(item);
+            var i = dataService.Create(item).Result;
 
-            var retrievedItem = await dataService.Get(testGuid);
-            Console.WriteLine($"Name: {retrievedItem.Name} \n Weight: {retrievedItem.Weight}");
+            var retrievedItem = dataService.Get(testGuid).Result;
+            Console.WriteLine($"Name: {retrievedItem.Name}\n Weight: {retrievedItem.Weight}");
 
         }
     }

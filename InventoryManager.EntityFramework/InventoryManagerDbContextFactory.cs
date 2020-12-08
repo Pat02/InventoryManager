@@ -10,6 +10,11 @@ namespace InventoryManager.EntityFramework
     {
         private readonly Action<DbContextOptionsBuilder> configureDbContext;
 
+        public InventoryManagerDbContextFactory()
+        {
+            configureDbContext = o => o.UseSqlite(@"Data Source=InventoryManager.db;");
+        }
+
         public InventoryManagerDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext)
         {
             this.configureDbContext = configureDbContext;

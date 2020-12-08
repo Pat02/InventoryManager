@@ -4,12 +4,10 @@ using System.Text;
 
 namespace InventoryManager.Domain.Models
 {
-    public class Container : Trackable, IItem
+    public class Container : Item
     {
-        public string Name { get; set; }
-        public double Weight { get; set; }
         public double MaximumCarryCapacity { get; set; }
         public double CurrentCarryCapacity { get; set; }
-        public Inventory Inventory { get; set; }
+        public List<ContainerItems> Inventory { get; set; }
     }
 }

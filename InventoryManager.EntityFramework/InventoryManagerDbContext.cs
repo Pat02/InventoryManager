@@ -12,16 +12,11 @@ namespace InventoryManager.EntityFramework
         public InventoryManagerDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Item> Items { get; set; }
-        public DbSet<Inventory> Inventories { get; set; }
-        public DbSet<InventoryItem> InventoryItems { get; set; }
         public DbSet<Container> Containers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Container>().HasKey("id");
             modelBuilder.Entity<Item>().HasKey("id");
-            modelBuilder.Entity<Inventory>().HasKey("id");
-            modelBuilder.Entity<InventoryItem>().HasKey("id");
             base.OnModelCreating(modelBuilder);
         }
     }

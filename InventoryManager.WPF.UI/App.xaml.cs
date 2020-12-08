@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using InventoryManager.EntityFramework;
 using Microsoft.EntityFrameworkCore;
+using InventoryManager.Domain.Services;
+using InventoryManager.EntityFramework.Services;
+using InventoryManager.Domain.Models;
+using InventoryManager.Domain.Repositories;
 
 namespace InventoryManager.WPF.UI
 {
@@ -28,6 +32,8 @@ namespace InventoryManager.WPF.UI
 
             Action<DbContextOptionsBuilder> configureDbContext = o => o.UseSqlite(@"Data Source=InventoryManager.db;");
             services.AddDbContext<InventoryManagerDbContext>(configureDbContext);
+            services.AddScoped<IDataService<Item>, GenericDataService<Item>>();
+            services.AddScoped<IRepository<Item>, ItemRepository>();
             services.AddSingleton<InventoryManagerDbContextFactory>(new InventoryManagerDbContextFactory(configureDbContext));
             DbContextOptionsBuilder options = new DbContextOptionsBuilder<InventoryManagerDbContext>();
             options.UseSqlite(@"Data Source=InventoryManager.db;");
