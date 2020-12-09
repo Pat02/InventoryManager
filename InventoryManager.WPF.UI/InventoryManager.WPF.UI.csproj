@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Styles\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
   </ItemGroup>
@@ -20,6 +22,15 @@
     <ProjectReference Include="..\InventoryManager.DnD5eAPI\InventoryManager.DnD5eAPI.csproj" />
     <ProjectReference Include="..\InventoryManager.Domain\InventoryManager.Domain.csproj" />
     <ProjectReference Include="..\InventoryManager.EntityFramework\InventoryManager.EntityFramework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Styles\EastSeaDokdo-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Styles\OFL.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

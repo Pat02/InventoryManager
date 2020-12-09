@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -7,11 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using InventoryManager.EntityFramework;
-using Microsoft.EntityFrameworkCore;
 using InventoryManager.Domain.Services;
 using InventoryManager.EntityFramework.Services;
+using InventoryManager.EntityFramework.Repositories;
 using InventoryManager.Domain.Models;
 using InventoryManager.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace InventoryManager.WPF.UI
 {
@@ -34,6 +35,7 @@ namespace InventoryManager.WPF.UI
             services.AddDbContext<InventoryManagerDbContext>(configureDbContext);
             services.AddScoped<IDataService<Item>, GenericDataService<Item>>();
             services.AddScoped<IRepository<Item>, ItemRepository>();
+            services.AddScoped<IRepository<Container>, ContainerRepository>();
             services.AddSingleton<InventoryManagerDbContextFactory>(new InventoryManagerDbContextFactory(configureDbContext));
             DbContextOptionsBuilder options = new DbContextOptionsBuilder<InventoryManagerDbContext>();
             options.UseSqlite(@"Data Source=InventoryManager.db;");

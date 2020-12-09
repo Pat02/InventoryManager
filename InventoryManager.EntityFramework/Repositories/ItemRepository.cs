@@ -6,7 +6,7 @@ using InventoryManager.Domain.Repositories;
 using InventoryManager.Domain.Services;
 using InventoryManager.EntityFramework.Services;
 
-namespace InventoryManager.EntityFramework
+namespace InventoryManager.EntityFramework.Repositories
 {
     public class ItemRepository : IRepository<Item>
     {
