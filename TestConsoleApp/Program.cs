@@ -18,7 +18,10 @@ namespace TestConsoleApp
 {
     class Program
     {
-
+        private static Guid CreateGuid()
+        {
+            return Guid.NewGuid();
+        }
 
         static async Task Main(string[] args)
         {
@@ -31,15 +34,21 @@ namespace TestConsoleApp
             Action<DbContextOptionsBuilder> configureDbContext = o => o.UseSqlite(@"Data Source=InventoryManager.db;");
 
             InventoryManagerDbContextFactory contextFactory = new InventoryManagerDbContextFactory(configureDbContext);
-            IDataService<Item> dataService = new GenericDataService<Item>(contextFactory);
-            Guid testGuid = Guid.NewGuid();
-            Item item = new Item() {id = testGuid, Name = "Test Item of Valor", Weight = 1 };
+            IDataService<Container> dataService = new GenericDataService<Container>(contextFactory);
 
-            var i = dataService.Create(item).Result;
+            Item item1 = new Item() { id = CreateGuid(), Name = "Test Item of Valor", Weight = 1 };
+            Item item2 = new Item() { id = CreateGuid(), Name = "Test Item of Valor", Weight = 1 };
+            Item item3 = new Item() { id = CreateGuid(), Name = "Test Item of Valor", Weight = 1 };
 
-            var retrievedItem = dataService.Get(testGuid).Result;
-            Console.WriteLine($"Name: {retrievedItem.Name}\n Weight: {retrievedItem.Weight}");
+            List<ContainerItems> containerItems = new List<ContainerItems>();
+            containerItems.Add(new ContainerItems() { id = CreateGuid(), Item = item1, Quantity = 3 });
+            containerItems.Add(new ContainerItems() { id = CreateGuid(), Item = item2, Quantity = 5 });
+            containerItems.Add(new ContainerItems() { id = CreateGuid(), Item = item3, Quantity = 1 });
+            Container container = new Container() { id = CreateGuid(), Inventory = containerItems, Name = "Test container", Weight = 3 };
+            var thing = await dataService.Create(container);
 
+            var newthing = await dataService.Get(thing.id);
+            Console.WriteLine("Great success!");
         }
     }
 }
