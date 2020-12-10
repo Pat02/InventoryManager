@@ -35,7 +35,6 @@ namespace InventoryManager.WPF.UI
             services.AddDbContext<InventoryManagerDbContext>(configureDbContext);
             services.AddScoped<IDataService<Item>, GenericDataService<Item>>();
             services.AddScoped<IRepository<Item>, ItemRepository>();
-            services.AddScoped<IRepository<Container>, ContainerRepository>();
             services.AddSingleton<InventoryManagerDbContextFactory>(new InventoryManagerDbContextFactory(configureDbContext));
             DbContextOptionsBuilder options = new DbContextOptionsBuilder<InventoryManagerDbContext>();
             options.UseSqlite(@"Data Source=InventoryManager.db;");

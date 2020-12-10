@@ -24,11 +24,6 @@ namespace InventoryManager.EntityFramework.Services
             return await _nonQueryDataService.Create(entity);
         }
 
-        public async Task<bool> Delete(Guid id)
-        {
-            return await _nonQueryDataService.Delete(id);
-        }
-
         public async Task<T> Get(Guid id)
         {
             using (InventoryManagerDbContext context = _contextFactory.CreateDbContext())
@@ -37,10 +32,25 @@ namespace InventoryManager.EntityFramework.Services
                 return entity;
             }
         }
+        public Task<IAsyncEnumerable<T>> GetAll()
+        {
+            using (InventoryManagerDbContext context = _contextFactory.CreateDbContext())
+            {
+                return (Task<IAsyncEnumerable<T>>)context.Set<T>().AsAsyncEnumerable();
+            }
+        }
 
         public async Task<T> Update(Guid id,T entity)
         {
             return await _nonQueryDataService.Update(id, entity);
+        }
+        public async Task<bool> Remove(Guid id)
+        {
+            return await _nonQueryDataService.Delete(id);
+        }
+        public async Task<bool> RemoveAll(IEnumerable<T> list)
+        {
+            return await _nonQueryDataService.DeleteAll(list);
         }
     }
 }

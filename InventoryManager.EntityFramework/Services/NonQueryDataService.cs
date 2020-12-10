@@ -52,5 +52,15 @@ namespace InventoryManager.EntityFramework.Services
                 return true;
             }
         }
+        public async Task<bool> DeleteAll(IEnumerable<T> list)
+        {
+            using (InventoryManagerDbContext context = _contextFactory.CreateDbContext())
+            {
+                context.Set<T>().RemoveRange(list);
+                await context.SaveChangesAsync();
+
+                return true;
+            }
+        }
     }
 }

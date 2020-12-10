@@ -9,9 +9,8 @@ namespace InventoryManager.Domain.Repositories
     public interface IRepository<T>
     {
         Task<T> Get(Guid Id);
-        Task<IEnumerable<T>> GetAll();
-        Task<T> Remove(Guid Id);
-        Task<T> RemoveAll(IEnumerable<T> list);
-        Task<T> Find(Expression<Func<T>> filter);
+        Task<IAsyncEnumerable<T>> GetAll();
+        Task<bool> Remove(Guid Id);
+        Task<bool> RemoveAll(IEnumerable<T> list);
     }
 }

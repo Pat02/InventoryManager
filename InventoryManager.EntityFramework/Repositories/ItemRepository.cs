@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using InventoryManager.Domain.Models;
 using InventoryManager.Domain.Repositories;
 using InventoryManager.Domain.Services;
 using InventoryManager.EntityFramework.Services;
+using System.Linq;
 
 namespace InventoryManager.EntityFramework.Repositories
 {
@@ -17,29 +19,25 @@ namespace InventoryManager.EntityFramework.Repositories
             this.dataService = dataService;
         }
 
-        public async System.Threading.Tasks.Task<Item> Find(System.Linq.Expressions.Expression<Func<Item>> filter)
+        public async Task<Item> Get(Guid Id)
         {
-            throw new NotImplementedException();
+            return await dataService.Get(Id);
         }
 
-        public async System.Threading.Tasks.Task<Item> Get(Guid Id)
+        public async Task<IAsyncEnumerable<Item>> GetAll()
         {
-            throw new NotImplementedException();
+            return await dataService.GetAll();
         }
 
-        public async System.Threading.Tasks.Task<IEnumerable<Item>> GetAll()
+        public async Task<bool> Remove(Guid Id)
         {
-            throw new NotImplementedException();
+            return await dataService.Remove(Id);
         }
 
-        public async System.Threading.Tasks.Task<Item> Remove(Guid Id)
+        public async Task<bool> RemoveAll(IEnumerable<Item> list)
         {
-            throw new NotImplementedException();
-        }
-
-        public async System.Threading.Tasks.Task<Item> RemoveAll(IEnumerable<Item> list)
-        {
-            throw new NotImplementedException();
+            await dataService.RemoveAll(list);
+            return true;
         }
     }
 }
