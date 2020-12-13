@@ -40,10 +40,10 @@ namespace TestConsoleApp
             Item item2 = new Item() { id = CreateGuid(), Name = "Test Item of Valor", Weight = 1 };
             Item item3 = new Item() { id = CreateGuid(), Name = "Test Item of Valor", Weight = 1 };
 
-            List<ContainerItems> containerItems = new List<ContainerItems>();
-            containerItems.Add(new ContainerItems() { id = CreateGuid(), Item = item1, Quantity = 3 });
-            containerItems.Add(new ContainerItems() { id = CreateGuid(), Item = item2, Quantity = 5 });
-            containerItems.Add(new ContainerItems() { id = CreateGuid(), Item = item3, Quantity = 1 });
+            List<ContainerItem> containerItems = new List<ContainerItem>();
+            containerItems.Add(new ContainerItem() { id = CreateGuid(), Item = item1, Quantity = 3 });
+            containerItems.Add(new ContainerItem() { id = CreateGuid(), Item = item2, Quantity = 5 });
+            containerItems.Add(new ContainerItem() { id = CreateGuid(), Item = item3, Quantity = 1 });
             Container container = new Container() { id = CreateGuid(), Inventory = containerItems, Name = "Test container", Weight = 3 };
             var thing = await dataService.Create(container);
 

@@ -25,9 +25,6 @@ namespace InventoryManager.WPF.UI
         public MainWindow()
         {
             InitializeComponent();
-            TreeviewViewModel viewModel = new TreeviewViewModel();
-            viewModel.RootContainer = MakeTestContainer();
-            DataContext = viewModel;
         }
 
         private Container MakeTestContainer()
@@ -40,11 +37,11 @@ namespace InventoryManager.WPF.UI
             Item item2 = new Item() { id = Guid.NewGuid(), Weight = 1, Name = "testItem2" };
             Item item3 = new Item() { id = Guid.NewGuid(), Weight = 1, Name = "testItem3" };
 
-            ContainerItems containerItems1 = new ContainerItems() { id = Guid.NewGuid(), Item = item1, Quantity = 4 };
-            ContainerItems containerItems2 = new ContainerItems() { id = Guid.NewGuid(), Item = item2, Quantity = 4 };
-            ContainerItems containerItems3 = new ContainerItems() { id = Guid.NewGuid(), Item = item3, Quantity = 4 };
+            ContainerItem containerItems1 = new ContainerItem() { id = Guid.NewGuid(), Item = item1, Quantity = 4 };
+            ContainerItem containerItems2 = new ContainerItem() { id = Guid.NewGuid(), Item = item2, Quantity = 4 };
+            ContainerItem containerItems3 = new ContainerItem() { id = Guid.NewGuid(), Item = item3, Quantity = 4 };
 
-            List<ContainerItems> list = new List<ContainerItems>();
+            List<ContainerItem> list = new List<ContainerItem>();
 
             list.Add(containerItems1);
             list.Add(containerItems2);

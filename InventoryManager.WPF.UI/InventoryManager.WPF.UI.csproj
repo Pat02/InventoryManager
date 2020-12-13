@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Styles\" />
+    <None Remove="Styles\Fonts\EastSeaDokdo-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Views\" />
   </ItemGroup>
 
@@ -24,10 +27,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Styles\EastSeaDokdo-Regular.ttf">
+    <Resource Include="Styles\Fonts\EastSeaDokdo-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Styles\OFL.txt">
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Styles\Fonts\OFL.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
