@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventoryManager.WPF.UI"
         xmlns:viewmodels="clr-namespace:InventoryManager.WPF.UI.ViewModels"
-        xmlns:model="clr-namespace:InventoryManager.Domain.Models;assembly=InventoryManager.Domain" 
         mc:Ignorable="d"
-        Title="Inventort Manager" Height="450" Width="800">
+        Title="Inventory Manager" Height="450" Width="800">
         
     <Grid>
         <Grid.ColumnDefinitions>
@@ -48,24 +47,27 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <TreeView Grid.Row="1" Grid.Column="0">
-            <HierarchicalDataTemplate DataType="{x:Type model:Container}"
-                                      ItemsSource="{Binding Path=Inventory}"
-                                      >
-                <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
-                    <TextBlock Text="{Binding Path=Name}" Margin="5 5 5 5"/>
-                    <TextBlock Text="{Binding Path=CurrentCarryCapacity}" Margin="5 5 5 5"/>
-                    <Label Content="/"/>
-                    <TextBlock Text="{Binding Path=MaximumCarryCapacity}" Margin="5 5 5 5"/>
-                    <TextBlock Text="{Binding Path=Weight}" Margin="5 5 5 5"/>
-                </StackPanel>
-            </HierarchicalDataTemplate>
-            <HierarchicalDataTemplate DataType="{x:Type model:ContainerItem}">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <TextBlock Text="{Binding Path=Item.Name}" Margin="5 5 5 5"/>
-                    <TextBlock Text="{Binding Path=Quantity}" Margin="5 5 5 5"/>
-                </StackPanel>
-            </HierarchicalDataTemplate>
+        <TreeView Grid.Row="1" Grid.Column="0"
+                  Name="Inventory">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type viewmodels:ContainerViewModel}" ItemsSource="{Binding containerViewModel}">
+                    <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+                        <Label Content="Name"/>
+                        <Label Content="{Binding Name}"/>
+                        <Label Content="{Binding CurrentCarryCapacity }"/>
+                        <Label Content="/"/>
+                        <Label Content="{Binding MaximumCarryCapacity }"/>
+                        <Label Content="Weight:"/>
+                        <Label Content="{Binding Weight}"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:ContainerItemViewModel}">
+                    <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+                        <Label Content="{Binding ContainerItemViewModel.ItemViewModel.Name}"/>
+                        <Label Content="{Binding Quantity}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </TreeView.Resources>
         </TreeView>
     </Grid>
 </Window>

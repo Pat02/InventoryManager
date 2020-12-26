@@ -1,6 +1,7 @@
 ﻿using InventoryManager.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace InventoryManager.WPF.UI.ViewModels
@@ -12,6 +13,7 @@ namespace InventoryManager.WPF.UI.ViewModels
         public ContainerViewModel(Container container)
         {
             _container = container;
+            _Inventory = new ObservableCollection<ContainerItem>();
         }
 
         public string Name
@@ -61,18 +63,27 @@ namespace InventoryManager.WPF.UI.ViewModels
                 }
             }
         }
-
-        public List<ContainerItem> Inventory
+        private ObservableCollection<ContainerItem> _Inventory;
+        public ObservableCollection<ContainerItem> Inventory
         {
             get
             {
-                return _container.Inventory;
+                _Inventory.Clear();
+                foreach (ContainerItem item in _container.Inventory)
+                {
+                    _Inventory.Add(item);
+                }
+                return _Inventory;
             }
             set
             {
-                if (_container.Inventory != value)
+                if (_Inventory != value)
                 {
-                    _container.Inventory = value;
+                    _container.Inventory.Clear();
+                    foreach(ContainerItem item in _Inventory)
+                    {
+                        _container.Inventory.Add(item);
+                    }
                     OnPropertyChanged(nameof(Inventory));
                 }
             }

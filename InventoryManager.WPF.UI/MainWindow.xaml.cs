@@ -25,6 +25,16 @@ namespace InventoryManager.WPF.UI
         public MainWindow()
         {
             InitializeComponent();
+            _containerViewModel = new ContainerViewModel(MakeTestContainer());
+            Inventory.ItemsSource = containerViewModel.Inventory;
+        }
+        private ContainerViewModel _containerViewModel;
+        ContainerViewModel containerViewModel
+        {
+            get
+            {
+                return _containerViewModel;
+            }
         }
 
         private Container MakeTestContainer()
@@ -32,6 +42,8 @@ namespace InventoryManager.WPF.UI
             Container rootContainer = new Container();
             rootContainer.Weight = 3;
             rootContainer.MaximumCarryCapacity = 30;
+            rootContainer.id = Guid.NewGuid();
+            rootContainer.Name = "Main Container";
 
             Item item1 = new Item() { id = Guid.NewGuid(), Weight = 1, Name = "testItem1" };
             Item item2 = new Item() { id = Guid.NewGuid(), Weight = 1, Name = "testItem2" };
@@ -46,7 +58,6 @@ namespace InventoryManager.WPF.UI
             list.Add(containerItems1);
             list.Add(containerItems2);
             list.Add(containerItems3);
-
             rootContainer.Inventory = list;
 
             return rootContainer;

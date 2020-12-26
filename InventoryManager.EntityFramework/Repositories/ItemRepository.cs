@@ -23,9 +23,13 @@ namespace InventoryManager.EntityFramework.Repositories
         {
             return await dataService.Get(Id);
         }
-
+        /// <summary>
+        /// This function grabs all items from the DnD api as well as the database
+        /// </summary>
+        /// <returns>AsyncEnumerable of Items</returns>
         public async Task<IAsyncEnumerable<Item>> GetAll()
         {
+
             return await dataService.GetAll();
         }
 
