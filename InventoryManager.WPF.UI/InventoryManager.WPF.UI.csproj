@@ -4,10 +4,14 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Styles\Fonts\EastSeaDokdo-Regular.ttf" />
+    <None Remove="Styles\Icons\bag.png" />
+    <None Remove="Styles\Icons\item.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +32,12 @@
 
   <ItemGroup>
     <Resource Include="Styles\Fonts\EastSeaDokdo-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Styles\Icons\bag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Styles\Icons\item.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

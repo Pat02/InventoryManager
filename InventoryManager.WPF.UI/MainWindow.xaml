@@ -25,49 +25,52 @@
                 <Label Content="Total Capacity:"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Padding="5"
+                       Margin="5"
                        FontFamily="Ink Free"
-                       FontSize="20"/>
+                       FontSize="18"/>
                 <TextBlock Text="{Binding MaximumWeight}"
                            MinWidth="50"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           Padding="5"/>
+                           Margin="5"/>
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Total Weight:"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Padding="5"/>
+                       Margin="5"
+                       FontFamily="Ink Free"
+                       FontSize="18"/>
                     <TextBlock Text="{Binding CurrentWeight}"
                            MinWidth="50"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           Padding="5"/>
+                           Margin="5"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
         <TreeView Grid.Row="1" Grid.Column="0"
-                  Name="Inventory">
+                  Name="InventoryTreeControl"
+                  ItemsSource="{Binding Inventory}">
             <TreeView.Resources>
-                <HierarchicalDataTemplate DataType="{x:Type viewmodels:ContainerViewModel}" ItemsSource="{Binding containerViewModel}">
-                    <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
-                        <Label Content="Name"/>
-                        <Label Content="{Binding Name}"/>
-                        <Label Content="{Binding CurrentCarryCapacity }"/>
-                        <Label Content="/"/>
-                        <Label Content="{Binding MaximumCarryCapacity }"/>
-                        <Label Content="Weight:"/>
-                        <Label Content="{Binding Weight}"/>
+                <HierarchicalDataTemplate DataType="{x:Type viewmodels:ContainerViewModel}" ItemsSource="{Binding Inventory}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Styles/Icons/bag.png" Margin="3"/>
+                        <TextBlock Text="{Binding Name}" Margin="3"/>
                     </StackPanel>
                 </HierarchicalDataTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:ContainerItemViewModel}">
-                    <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
-                        <Label Content="{Binding ContainerItemViewModel.ItemViewModel.Name}"/>
-                        <Label Content="{Binding Quantity}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Styles/Icons/item.png"/>
+                        <TextBlock Text="{Binding ItemViewModel.Name}" VerticalAlignment="Center"/>
+                        <Label Content="weight: " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding ItemViewModel.Weight}" VerticalAlignment="Center"/>
+                        <Label Content="qty: " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Quantity}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </DataTemplate>
             </TreeView.Resources>
+
         </TreeView>
     </Grid>
 </Window>

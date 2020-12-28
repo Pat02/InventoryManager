@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,23 +26,19 @@ namespace InventoryManager.WPF.UI
         public MainWindow()
         {
             InitializeComponent();
-            _containerViewModel = new ContainerViewModel(MakeTestContainer());
-            Inventory.ItemsSource = containerViewModel.Inventory;
+            DataContext = this;
+            ContainerViewModel = new ContainerViewModel(MakeTestContainer());
+            Inventory = ContainerViewModel.Inventory;
         }
-        private ContainerViewModel _containerViewModel;
-        ContainerViewModel containerViewModel
-        {
-            get
-            {
-                return _containerViewModel;
-            }
-        }
+
+        public ContainerViewModel ContainerViewModel { get; set; }
+        public ObservableCollection<ContainerItemViewModel> Inventory { get; set; }
 
         private Container MakeTestContainer()
         {
             Container rootContainer = new Container();
             rootContainer.Weight = 3;
-            rootContainer.MaximumCarryCapacity = 30;
+            rootContainer.MaximumCarryWeight = 30;
             rootContainer.id = Guid.NewGuid();
             rootContainer.Name = "Main Container";
 

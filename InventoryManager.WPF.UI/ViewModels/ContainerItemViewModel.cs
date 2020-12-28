@@ -5,14 +5,14 @@ using System.Text;
 
 namespace InventoryManager.WPF.UI.ViewModels
 {
-    class ContainerItemViewModel : ViewModelBase
+    public class ContainerItemViewModel : ViewModelBase
     {
-        private ContainerItem _containerItem;
+        public ContainerItem ContainerItem { get; }
 
         public ContainerItemViewModel(ContainerItem containerItem)
         {
-            _containerItem = containerItem;
-            _itemViewModel = new ItemViewModel(_containerItem.Item);
+            ContainerItem = containerItem;
+            _itemViewModel = new ItemViewModel(ContainerItem.Item);
         }
         private ItemViewModel _itemViewModel;
         public ItemViewModel ItemViewModel
@@ -27,11 +27,11 @@ namespace InventoryManager.WPF.UI.ViewModels
         {
             get
             {
-                return _containerItem.Quantity;
+                return ContainerItem.Quantity;
             }
             set
             {
-                _containerItem.Quantity = value;
+                ContainerItem.Quantity = value;
             }
         }
     }

@@ -13,7 +13,7 @@ namespace InventoryManager.WPF.UI.ViewModels
         public ContainerViewModel(Container container)
         {
             _container = container;
-            _Inventory = new ObservableCollection<ContainerItem>();
+            _Inventory = new ObservableCollection<ContainerItemViewModel>();
         }
 
         public string Name
@@ -63,15 +63,16 @@ namespace InventoryManager.WPF.UI.ViewModels
                 }
             }
         }
-        private ObservableCollection<ContainerItem> _Inventory;
-        public ObservableCollection<ContainerItem> Inventory
+
+        private ObservableCollection<ContainerItemViewModel> _Inventory;
+        public ObservableCollection<ContainerItemViewModel> Inventory
         {
             get
             {
                 _Inventory.Clear();
                 foreach (ContainerItem item in _container.Inventory)
                 {
-                    _Inventory.Add(item);
+                    _Inventory.Add(new ContainerItemViewModel(item));
                 }
                 return _Inventory;
             }
@@ -80,9 +81,10 @@ namespace InventoryManager.WPF.UI.ViewModels
                 if (_Inventory != value)
                 {
                     _container.Inventory.Clear();
-                    foreach(ContainerItem item in _Inventory)
+                    foreach(ContainerItemViewModel containerItemViewModel in _Inventory)
                     {
-                        _container.Inventory.Add(item);
+                        _container.Inventory.Add(new ContainerItem(containerItemViewModel.ItemViewModel.Item,
+                                                                   containerItemViewModel.Quantity));
                     }
                     OnPropertyChanged(nameof(Inventory));
                 }
@@ -93,13 +95,13 @@ namespace InventoryManager.WPF.UI.ViewModels
         {
             get
             {
-                return _container.MaximumCarryCapacity;
+                return _container.MaximumCarryWeight;
             }
             set
             {
-                if (_container.MaximumCarryCapacity != value)
+                if (_container.MaximumCarryWeight != value)
                 {
-                    _container.MaximumCarryCapacity = value;
+                    _container.MaximumCarryWeight = value;
                     OnPropertyChanged(nameof(MaximumCarryCapacity));
                 }
             }
@@ -108,16 +110,9 @@ namespace InventoryManager.WPF.UI.ViewModels
         {
             get
             {
-                return _container.CurrentCarryCapacity;
+                return _container.CurrentWeightInContainer;
             }
-            set
-            {
-                if (_container.CurrentCarryCapacity != value)
-                {
-                    _container.CurrentCarryCapacity = value;
-                    OnPropertyChanged(nameof(CurrentCarryCapacity));
-                }
-            }
+
         }
         public bool IsRootContainer
         {
