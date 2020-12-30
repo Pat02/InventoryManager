@@ -55,18 +55,18 @@
             <TreeView.Resources>
                 <HierarchicalDataTemplate DataType="{x:Type viewmodels:ContainerViewModel}" ItemsSource="{Binding Inventory}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="Styles/Icons/bag.png" Margin="3"/>
+                        <Image Source="Styles/Icons/bag.png" Margin="3" VerticalAlignment="Center" Width="12" Height="12"/>
                         <TextBlock Text="{Binding Name}" Margin="3"/>
                     </StackPanel>
                 </HierarchicalDataTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:ContainerItemViewModel}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="Styles/Icons/item.png"/>
+                        <Image Source="Styles/Icons/item.png" Width="12" Height="12" VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding ItemViewModel.Name}" VerticalAlignment="Center"/>
                         <Label Content="weight: " VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding ItemViewModel.Weight}" VerticalAlignment="Center"/>
                         <Label Content="qty: " VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding Quantity}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Quantity, Mode=TwoWay}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </DataTemplate>
             </TreeView.Resources>

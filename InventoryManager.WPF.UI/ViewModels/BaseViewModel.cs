@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace InventoryManager.WPF.UI.ViewModels
 {
-    public class ViewModelBase : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace InventoryManager.Domain.Models
 {
-    public class ContainerItem : Trackable
+    public class ContainerItem : Trackable, IStorable
     {
         public ContainerItem()
         {
@@ -27,6 +27,16 @@ namespace InventoryManager.Domain.Models
             {
                 return Item.Weight * Quantity;
             }
+        }
+
+        public double GetWeightForContainer()
+        {
+            throw new NotImplementedException();
+        }
+
+        public double GetWeightIncludingStrappedItems()
+        {
+            throw new NotImplementedException();
         }
     }
 

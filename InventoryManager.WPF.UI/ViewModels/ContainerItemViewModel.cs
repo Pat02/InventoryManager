@@ -5,7 +5,7 @@ using System.Text;
 
 namespace InventoryManager.WPF.UI.ViewModels
 {
-    public class ContainerItemViewModel : ViewModelBase
+    public class ContainerItemViewModel : StorableBaseViewModel
     {
         public ContainerItem ContainerItem { get; }
 

@@ -66,7 +66,7 @@ namespace InventoryManager.WPF.UI.TreeViewItems
         {
             get
             {
-                return _container.CurrentWeightInContainer;
+                return _container.GetWeightForContainer();
             }
         }
         public bool IsRootContainer

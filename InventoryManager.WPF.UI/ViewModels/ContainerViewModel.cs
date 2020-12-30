@@ -6,14 +6,14 @@ using System.Text;
 
 namespace InventoryManager.WPF.UI.ViewModels
 {
-    public class ContainerViewModel : ViewModelBase
+    public class ContainerViewModel : StorableBaseViewModel
     {
         private Container _container;
 
         public ContainerViewModel(Container container)
         {
             _container = container;
-            _Inventory = new ObservableCollection<ContainerItemViewModel>();
+            _Inventory = new ObservableCollection<IStorableViewModel>();
         }
 
         public string Name
@@ -24,7 +24,7 @@ namespace InventoryManager.WPF.UI.ViewModels
             }
             set
             {
-                if(_container.Name != value)
+                if (_container.Name != value)
                 {
                     _container.Name = value;
                     OnPropertyChanged(nameof(Name));
@@ -64,15 +64,27 @@ namespace InventoryManager.WPF.UI.ViewModels
             }
         }
 
-        private ObservableCollection<ContainerItemViewModel> _Inventory;
-        public ObservableCollection<ContainerItemViewModel> Inventory
+        private ObservableCollection<IStorableViewModel> _Inventory;
+        public ObservableCollection<IStorableViewModel> Inventory
         {
             get
             {
                 _Inventory.Clear();
-                foreach (ContainerItem item in _container.Inventory)
+                foreach (IStorable StorableItem in _container.Inventory)
                 {
-                    _Inventory.Add(new ContainerItemViewModel(item));
+                    if (StorableItem is ContainerItem)
+                    {
+                        ContainerItem containerItem = (ContainerItem)StorableItem;
+                        var containerItemViewModel = new ContainerItemViewModel(
+                                                     new ContainerItem(containerItem.Item, containerItem.Quantity));
+                        _Inventory.Add(containerItemViewModel);
+                    }
+                    else if (StorableItem is Container)
+                    {
+                        Container container = (Container)StorableItem;
+                        var containerViewModel = new ContainerViewModel(container);
+                        _Inventory.Add(containerViewModel);
+                    }
                 }
                 return _Inventory;
             }
@@ -81,10 +93,17 @@ namespace InventoryManager.WPF.UI.ViewModels
                 if (_Inventory != value)
                 {
                     _container.Inventory.Clear();
-                    foreach(ContainerItemViewModel containerItemViewModel in _Inventory)
+                    foreach (IStorableViewModel StorableItemViewModel in _Inventory)
                     {
-                        _container.Inventory.Add(new ContainerItem(containerItemViewModel.ItemViewModel.Item,
-                                                                   containerItemViewModel.Quantity));
+                        if (StorableItemViewModel is ContainerItemViewModel containerItemViewModel)
+                        {
+                            _container.Inventory.Add(new ContainerItem(containerItemViewModel.ItemViewModel.Item,
+                                                                       containerItemViewModel.Quantity));
+                        }
+                        else if (StorableItemViewModel is ContainerViewModel)
+                        {
+                            _container.Inventory.Add(new Container());
+                        }
                     }
                     OnPropertyChanged(nameof(Inventory));
                 }
@@ -110,7 +129,7 @@ namespace InventoryManager.WPF.UI.ViewModels
         {
             get
             {
-                return _container.CurrentWeightInContainer;
+                return _container.GetWeightForContainer();
             }
 
         }

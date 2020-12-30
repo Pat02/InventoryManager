@@ -5,7 +5,7 @@ using System.Text;
 
 namespace InventoryManager.WPF.UI.ViewModels
 {
-    public class ItemViewModel : ViewModelBase
+    public class ItemViewModel : BaseViewModel
     {
         
 

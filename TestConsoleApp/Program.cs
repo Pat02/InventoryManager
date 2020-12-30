@@ -40,7 +40,7 @@ namespace TestConsoleApp
             Item item2 = new Item() { id = CreateGuid(), Name = "Test Item of Valor", Weight = 1 };
             Item item3 = new Item() { id = CreateGuid(), Name = "Test Item of Valor", Weight = 1 };
 
-            List<ContainerItem> containerItems = new List<ContainerItem>();
+            List<IStorable> containerItems = new List<IStorable>();
             containerItems.Add(new ContainerItem() { id = CreateGuid(), Item = item1, Quantity = 3 });
             containerItems.Add(new ContainerItem() { id = CreateGuid(), Item = item2, Quantity = 5 });
             containerItems.Add(new ContainerItem() { id = CreateGuid(), Item = item3, Quantity = 1 });
