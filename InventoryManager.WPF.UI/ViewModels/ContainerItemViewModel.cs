@@ -12,10 +12,10 @@ namespace InventoryManager.WPF.UI.ViewModels
         public ContainerItemViewModel(ContainerItem containerItem)
         {
             ContainerItem = containerItem;
-            _itemViewModel = new ItemViewModel(ContainerItem.Item);
+            _itemViewModel = new ItemDefinitionViewModel(ContainerItem.ItemDefinition);
         }
-        private ItemViewModel _itemViewModel;
-        public ItemViewModel ItemViewModel
+        private ItemDefinitionViewModel _itemViewModel;
+        public ItemDefinitionViewModel ItemViewModel
         {
             get
             {

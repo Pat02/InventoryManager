@@ -4,9 +4,9 @@ using System.Text;
 
 namespace InventoryManager.Domain.Models
 {
-    public class Item : Trackable
+    public class ItemDefinition : Item
     {
-
-        
+        public string Name { get; set; }
+        public double Weight { get; set; }
     }
 }

@@ -4,18 +4,23 @@ using System.Text;
 
 namespace InventoryManager.Domain.Models
 {
-    public class Container : Item, IStorable
+    public class Container : StorableItem, IStorable
     {
+        public ItemDefinition ItemDefinition { get; }
         public string NickName { get; set; } = string.Empty;
         public double MaximumCarryWeight { get; set; }
-        
-        public List<IStorable> Inventory { get; set; }
+
+        public List<StorableItem> Inventory { get; set; }
         public bool IsRootContainer { get; set; } = false;
 
-        public bool ContainerItemWeightCountsToContainerTotal(ContainerItem containerItem)
+        public Container()
         {
-            if (containerItem.ItemLocation == ItemLocation.inContainer) return true;
-            else return false;
+            ItemDefinition = new ItemDefinition();
+        }
+
+        public Container(ItemDefinition itemDefinition)
+        {
+            ItemDefinition = itemDefinition;
         }
 
         private double _CurrentWeightInContainer = 0;
@@ -25,27 +30,42 @@ namespace InventoryManager.Domain.Models
         /// </summary>
         public double GetWeightForContainer()
         {
-            foreach (ContainerItem containerItem in Inventory)
+            foreach (IStorable storable in Inventory)
             {
-                if (ContainerItemWeightCountsToContainerTotal(containerItem))
+                if (storable is ContainerItem containerItem)
                 {
-                    _CurrentWeightInContainer += containerItem.ItemWeightSubtotal;
+                    if (ContainerItemWeightCountsToContainerTotal(containerItem))
+                    {
+                        _CurrentWeightInContainer += storable.GetWeightForContainer();
+                    }
+                }
+                if (storable is Container container)
+                {
+                    _CurrentWeightInContainer += container.GetWeightForContainer();
                 }
             }
-            return _CurrentWeightInContainer + Weight;
+            return _CurrentWeightInContainer + ItemDefinition.Weight;
         }
 
         private double _TotalWeightofContainerAndAllChildItems = 0;
+
         /// <summary>
         /// This is for the total load on the character, including items strapped to outside.
         /// </summary>
         public double GetWeightIncludingStrappedItems()
         {
-            foreach (IStorable containerItem in Inventory)
+            foreach (IStorable storable in Inventory)
             {
-                _TotalWeightofContainerAndAllChildItems += containerItem.GetWeightIncludingStrappedItems();
+                if (storable is ContainerItem containerItem)
+                {
+                    _TotalWeightofContainerAndAllChildItems += containerItem.GetWeightForContainer();
+                }
+                if (storable is Container container)
+                {
+                    _TotalWeightofContainerAndAllChildItems += container.GetWeightForContainer();
+                }
             }
-            return _TotalWeightofContainerAndAllChildItems + Weight;
+            return _TotalWeightofContainerAndAllChildItems + ItemDefinition.Weight;
         }
     }
 }

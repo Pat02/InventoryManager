@@ -20,13 +20,13 @@ namespace InventoryManager.WPF.UI.ViewModels
         {
             get
             {
-                return _container.Name;
+                return _container.ItemDefinition.Name;
             }
             set
             {
-                if (_container.Name != value)
+                if (_container.ItemDefinition.Name != value)
                 {
-                    _container.Name = value;
+                    _container.ItemDefinition.Name = value;
                     OnPropertyChanged(nameof(Name));
                 }
             }
@@ -52,13 +52,13 @@ namespace InventoryManager.WPF.UI.ViewModels
         {
             get
             {
-                return _container.Weight;
+                return _container.ItemDefinition.Weight;
             }
             set
             {
-                if (_container.Weight != value)
+                if (_container.ItemDefinition.Weight != value)
                 {
-                    _container.Weight = value;
+                    _container.ItemDefinition.Weight = value;
                     OnPropertyChanged(nameof(Weight));
                 }
             }
@@ -76,7 +76,7 @@ namespace InventoryManager.WPF.UI.ViewModels
                     {
                         ContainerItem containerItem = (ContainerItem)StorableItem;
                         var containerItemViewModel = new ContainerItemViewModel(
-                                                     new ContainerItem(containerItem.Item, containerItem.Quantity));
+                                                     new ContainerItem(containerItem.ItemDefinition, containerItem.Quantity));
                         _Inventory.Add(containerItemViewModel);
                     }
                     else if (StorableItem is Container)
@@ -97,7 +97,7 @@ namespace InventoryManager.WPF.UI.ViewModels
                     {
                         if (StorableItemViewModel is ContainerItemViewModel containerItemViewModel)
                         {
-                            _container.Inventory.Add(new ContainerItem(containerItemViewModel.ItemViewModel.Item,
+                            _container.Inventory.Add(new ContainerItem(containerItemViewModel.ItemViewModel.ItemDefinition,
                                                                        containerItemViewModel.Quantity));
                         }
                         else if (StorableItemViewModel is ContainerViewModel)

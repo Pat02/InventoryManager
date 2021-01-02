@@ -36,15 +36,17 @@ namespace TestConsoleApp
             InventoryManagerDbContextFactory contextFactory = new InventoryManagerDbContextFactory(configureDbContext);
             IDataService<Container> dataService = new GenericDataService<Container>(contextFactory);
 
-            Item item1 = new Item() { id = CreateGuid(), Name = "Test Item of Valor", Weight = 1 };
-            Item item2 = new Item() { id = CreateGuid(), Name = "Test Item of Valor", Weight = 1 };
-            Item item3 = new Item() { id = CreateGuid(), Name = "Test Item of Valor", Weight = 1 };
+            ItemDefinition item1 = new ItemDefinition() { id = CreateGuid(), Name = "Test Item of Valor", Weight = 1 };
+            ItemDefinition item2 = new ItemDefinition() { id = CreateGuid(), Name = "Test Item of Valor", Weight = 1 };
+            ItemDefinition item3 = new ItemDefinition() { id = CreateGuid(), Name = "Test Item of Valor", Weight = 1 };
 
-            List<IStorable> containerItems = new List<IStorable>();
-            containerItems.Add(new ContainerItem() { id = CreateGuid(), Item = item1, Quantity = 3 });
-            containerItems.Add(new ContainerItem() { id = CreateGuid(), Item = item2, Quantity = 5 });
-            containerItems.Add(new ContainerItem() { id = CreateGuid(), Item = item3, Quantity = 1 });
-            Container container = new Container() { id = CreateGuid(), Inventory = containerItems, Name = "Test container", Weight = 3 };
+            List<StorableItem> containerItems = new List<StorableItem>();
+            containerItems.Add(new ContainerItem() { id = CreateGuid(), ItemDefinition = item1, Quantity = 3 });
+            containerItems.Add(new ContainerItem() { id = CreateGuid(), ItemDefinition = item2, Quantity = 5 });
+            containerItems.Add(new ContainerItem() { id = CreateGuid(), ItemDefinition = item3, Quantity = 1 });
+            Container container = new Container() { id = CreateGuid(), Inventory = containerItems};
+            container.ItemDefinition.Name = "Test Container";
+            container.ItemDefinition.Weight = 3;
             var thing = await dataService.Create(container);
 
             var newthing = await dataService.Get(thing.id);

@@ -27,23 +27,23 @@ namespace InventoryManager.WPF.UI
             base.OnStartup(e);
         }
 
-        //private IServiceProvider CreateServiceProvider()
-        //{
-        //    IServiceCollection services = new ServiceCollection();
+        private IServiceProvider CreateServiceProvider()
+        {
+            IServiceCollection services = new ServiceCollection();
 
-        //    Action<DbContextOptionsBuilder> configureDbContext = o => o.UseSqlite(@"Data Source=InventoryManager.db;");
-        //    services.AddDbContext<InventoryManagerDbContext>(configureDbContext);
-        //    services.AddScoped<IDataService<Item>, GenericDataService<Item>>();
-        //    services.AddScoped<IRepository<Item>, ItemRepository>();
-        //    services.AddSingleton<InventoryManagerDbContextFactory>(new InventoryManagerDbContextFactory(configureDbContext));
-        //    DbContextOptionsBuilder options = new DbContextOptionsBuilder<InventoryManagerDbContext>();
-        //    options.UseSqlite(@"Data Source=InventoryManager.db;");
-        //    using(InventoryManagerDbContext context = new InventoryManagerDbContext(options.Options))
-        //    {
-        //        context.Database.Migrate();
-        //    }
+            Action<DbContextOptionsBuilder> configureDbContext = o => o.UseSqlite(@"Data Source=InventoryManager.db;");
+            services.AddDbContext<InventoryManagerDbContext>(configureDbContext);
+            services.AddScoped<IDataService<ItemDefinition>, GenericDataService<ItemDefinition>>();
+            services.AddScoped<IRepository<ItemDefinition>, ItemDefinitionRepository>();
+            services.AddSingleton<InventoryManagerDbContextFactory>(new InventoryManagerDbContextFactory(configureDbContext));
+            DbContextOptionsBuilder options = new DbContextOptionsBuilder<InventoryManagerDbContext>();
+            options.UseSqlite(@"Data Source=InventoryManager.db;");
+            using (InventoryManagerDbContext context = new InventoryManagerDbContext(options.Options))
+            {
+                context.Database.Migrate();
+            }
 
-        //    return services.BuildServiceProvider();
-        //}
+            return services.BuildServiceProvider();
+        }
     }
 }

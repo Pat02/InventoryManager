@@ -4,39 +4,31 @@ using System.Text;
 
 namespace InventoryManager.Domain.Models
 {
-    public class ContainerItem : Trackable, IStorable
+    public class ContainerItem : StorableItem, IStorable
     {
         public ContainerItem()
         {
         }
 
-        public ContainerItem(Item item, int quantity)
+        public ContainerItem(ItemDefinition item, int quantity)
         {
-            Item = item;
+            ItemDefinition = item;
             Quantity = quantity;
         }
 
-        public Item Item { get; set; }
+        public ItemDefinition ItemDefinition { get; set; }
         public int Quantity { get; set; }
 
         public ItemLocation ItemLocation { get; set; } = ItemLocation.inContainer;
 
-        public double ItemWeightSubtotal
-        {
-            get
-            {
-                return Item.Weight * Quantity;
-            }
-        }
-
         public double GetWeightForContainer()
         {
-            throw new NotImplementedException();
+            return ItemDefinition.Weight * Quantity;
         }
 
         public double GetWeightIncludingStrappedItems()
         {
-            throw new NotImplementedException();
+            return GetWeightForContainer();
         }
     }
 

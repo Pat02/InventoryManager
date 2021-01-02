@@ -37,34 +37,34 @@ namespace InventoryManager.WPF.UI
         private Container MakeTestContainer()
         {
             Container rootContainer = new Container();
-            rootContainer.Weight = 3;
+            rootContainer.ItemDefinition.Weight = 3;
             rootContainer.MaximumCarryWeight = 30;
             rootContainer.id = Guid.NewGuid();
-            rootContainer.Name = "Main Container";
+            rootContainer.ItemDefinition.Name = "Main Container";
             rootContainer.Inventory = PopulateInventory();
 
             Container childContainer = new Container();
-            childContainer.Weight = 1;
+            childContainer.ItemDefinition.Weight = 1;
             childContainer.MaximumCarryWeight = 5;
             childContainer.id = Guid.NewGuid();
-            childContainer.Name = "Child Container";
+            childContainer.ItemDefinition.Name = "Child Container";
             childContainer.Inventory = PopulateInventory();
 
             rootContainer.Inventory.Add(childContainer);
             return rootContainer;
         }
 
-        private static List<IStorable> PopulateInventory()
+        private static List<StorableItem> PopulateInventory()
         {
-            Item item1 = new Item() { id = Guid.NewGuid(), Weight = 1, Name = "testItem1" };
-            Item item2 = new Item() { id = Guid.NewGuid(), Weight = 1, Name = "testItem2" };
-            Item item3 = new Item() { id = Guid.NewGuid(), Weight = 1, Name = "testItem3" };
+            ItemDefinition item1 = new ItemDefinition() { id = Guid.NewGuid(), Weight = 1, Name = "testItem1" };
+            ItemDefinition item2 = new ItemDefinition() { id = Guid.NewGuid(), Weight = 1, Name = "testItem2" };
+            ItemDefinition item3 = new ItemDefinition() { id = Guid.NewGuid(), Weight = 1, Name = "testItem3" };
 
-            ContainerItem containerItems1 = new ContainerItem() { id = Guid.NewGuid(), Item = item1, Quantity = 4 };
-            ContainerItem containerItems2 = new ContainerItem() { id = Guid.NewGuid(), Item = item2, Quantity = 4 };
-            ContainerItem containerItems3 = new ContainerItem() { id = Guid.NewGuid(), Item = item3, Quantity = 4 };
+            ContainerItem containerItems1 = new ContainerItem() { id = Guid.NewGuid(), ItemDefinition = item1, Quantity = 4 };
+            ContainerItem containerItems2 = new ContainerItem() { id = Guid.NewGuid(), ItemDefinition = item2, Quantity = 4 };
+            ContainerItem containerItems3 = new ContainerItem() { id = Guid.NewGuid(), ItemDefinition = item3, Quantity = 4 };
 
-            List<IStorable> list = new List<IStorable>();
+            List<StorableItem> list = new List<StorableItem>();
 
             list.Add(containerItems1);
             list.Add(containerItems2);

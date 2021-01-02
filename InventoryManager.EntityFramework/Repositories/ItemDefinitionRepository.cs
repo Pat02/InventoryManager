@@ -10,16 +10,16 @@ using System.Linq;
 
 namespace InventoryManager.EntityFramework.Repositories
 {
-    public class ItemRepository : IRepository<Item>
+    public class ItemDefinitionRepository : IRepository<ItemDefinition>
     {
-        protected readonly IDataService<Item> dataService;
+        protected readonly IDataService<ItemDefinition> dataService;
 
-        public ItemRepository(GenericDataService<Item> dataService)
+        public ItemDefinitionRepository(GenericDataService<ItemDefinition> dataService)
         {
             this.dataService = dataService;
         }
 
-        public async Task<Item> Get(Guid Id)
+        public async Task<ItemDefinition> Get(Guid Id)
         {
             return await dataService.Get(Id);
         }
@@ -27,7 +27,7 @@ namespace InventoryManager.EntityFramework.Repositories
         /// This function grabs all items from the DnD api as well as the database
         /// </summary>
         /// <returns>AsyncEnumerable of Items</returns>
-        public async Task<IAsyncEnumerable<Item>> GetAll()
+        public async Task<IAsyncEnumerable<ItemDefinition>> GetAll()
         {
 
             return await dataService.GetAll();
@@ -38,7 +38,7 @@ namespace InventoryManager.EntityFramework.Repositories
             return await dataService.Remove(Id);
         }
 
-        public async Task<bool> RemoveAll(IEnumerable<Item> list)
+        public async Task<bool> RemoveAll(IEnumerable<ItemDefinition> list)
         {
             await dataService.RemoveAll(list);
             return true;

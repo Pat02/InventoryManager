@@ -5,48 +5,45 @@ using System.Text;
 
 namespace InventoryManager.WPF.UI.ViewModels
 {
-    public class ItemViewModel : BaseViewModel
+    public class ItemDefinitionViewModel : BaseViewModel
     {
-        
-
-        public ItemViewModel(Item item)
+        public ItemDefinitionViewModel(ItemDefinition itemDefinition)
         {
-            Item = item;
+            ItemDefinition = itemDefinition;
         }
 
-        public Item Item { get; set; }
+        public ItemDefinition ItemDefinition { get; set; }
 
         public string Name
         {
             get
             {
-                return Item.Name;
+                return ItemDefinition.Name;
             }
             set
             {
-                if (Item.Name != value)
+                if (ItemDefinition.Name != value)
                 {
-                    Item.Name = value;
+                    ItemDefinition.Name = value;
                     OnPropertyChanged(nameof(Name));
                 }
             }
         }
+
         public double Weight
         {
             get
             {
-                return Item.Weight;
+                return ItemDefinition.Weight;
             }
             set
             {
-                if (Item.Weight != value)
+                if (ItemDefinition.Weight != value)
                 {
-                    Item.Weight = value;
+                    ItemDefinition.Weight = value;
                     OnPropertyChanged(nameof(Weight));
                 }
             }
         }
     }
-
-
 }
