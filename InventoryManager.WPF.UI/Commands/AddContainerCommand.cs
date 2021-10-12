@@ -16,7 +16,11 @@ namespace InventoryManager.WPF.UI.Commands
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            if(parameter is TreeViewItems.BaseTreeViewItem)
+            {
+                int x = 0;
+                x++;
+            }
         }
     }
 }

@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventoryManager.WPF.UI"
+        
         xmlns:viewmodels="clr-namespace:InventoryManager.WPF.UI.ViewModels"
+        xmlns:commands="clr-namespace:InventoryManager.WPF.UI.Commands"
+        
         mc:Ignorable="d"
-        Title="Inventory Manager" Height="450" Width="800">
+        Title="Inventory Manager" Height="550" Width="800">
         
     <Grid>
         <Grid.ColumnDefinitions>
@@ -14,8 +17,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="8*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal"
                     Margin="5"
@@ -70,7 +74,11 @@
                     </StackPanel>
                 </DataTemplate>
             </TreeView.Resources>
-
         </TreeView>
+        <StackPanel Orientation="Horizontal" Margin="1" Grid.Row="2" Grid.Column="0">
+            <Button x:Name="btnAddContainer" Margin="2" Content="Add Container" Padding="5"/>
+            <Button x:Name="btnAddItem" Margin="2" Content="Add Item" Padding="5"/>
+            <Button x:Name="btnRemoveItem" Margin="2" Content="Remove Item" Padding="5" />
+        </StackPanel>
     </Grid>
 </Window>
